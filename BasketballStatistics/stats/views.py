@@ -4,7 +4,7 @@ from .models import *
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, Welcome to our Statistics App")
+    return render(request,"stats/index.html")
 
 #render a form for adding a new athlete to the application database.
 def add_athlete(request):

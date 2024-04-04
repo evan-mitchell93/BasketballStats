@@ -13,6 +13,10 @@
     </style>
   </head>
   <body>
+    <div class="navigation">
+      <a href="{% url 'add_athlete' %}">New Athlete</a>
+      <a href="{% url 'add_game' %}">New Game</a>
+    </div>
     <div class="main_content">{% block content %} {% endblock %}</div>
   </body>
 </html>
