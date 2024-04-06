@@ -1,5 +1,10 @@
 {% extends "stats/index.html" %} {% block content %}
 <h2 class="main_content">Add Athlete</h2>
+<div>
+  {% for athlete in athletes %}
+    <p>{{athlete}}</p>
+  {% endfor %}
+</div>
 <form action="{% url 'add_athlete' %}" method="post">
   {% csrf_token %} {% for field in form %}
   <div>
