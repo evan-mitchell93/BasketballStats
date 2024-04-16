@@ -26,4 +26,5 @@ def add_game(request):
 
 
 def practice_stats(request):
-    return render(request,"stats/practice.html")
+    test = Stats.objects.filter(player__last_name__contains="Easton")
+    return HttpResponse(test)
