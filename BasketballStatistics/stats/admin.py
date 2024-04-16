@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Athlete)
 admin.site.register(Game)
+admin.site.register(Stats)

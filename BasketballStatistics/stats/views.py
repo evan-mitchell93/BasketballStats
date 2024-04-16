@@ -23,3 +23,7 @@ def add_game(request):
         form.save()
         return HttpResponse("Thank you for adding a game")
     return render(request,"stats/game_form.html",{"form":form})
+
+
+def practice_stats(request):
+    return render(request,"stats/practice.html")

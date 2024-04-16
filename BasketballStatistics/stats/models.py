@@ -72,3 +72,28 @@ class GameForm(ModelForm):
     class Meta:
         model = Game
         fields = ["team","opponent","team_score","opp_score","outcome","date"]
+
+
+
+##########################
+# STATS MODELS AND FORMS #
+##########################
+
+class Stats(models.Model):
+    season = models.CharField(max_length=5)
+    player = models.ForeignKey(Athlete,on_delete=models.CASCADE)
+    s_type = models.CharField(max_length=9)
+    two_taken = models.IntegerField(default=0)
+    two_made = models.IntegerField(default=0)
+    three_taken = models.IntegerField(default=0)
+    three_made = models.IntegerField(default=0)
+    ft_taken = models.IntegerField(default=0)
+    ft_made = models.IntegerField(default=0)
+    steals = models.IntegerField(default=0)
+    assists = models.IntegerField(default=0)
+    turnovers = models.IntegerField(default=0)
+    off_rebounds = models.IntegerField(default=0)
+    def_rebounds = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.player.last_name}, {self.s_type}: {self.season}"
