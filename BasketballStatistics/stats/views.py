@@ -26,5 +26,10 @@ def add_game(request):
 
 
 def practice_stats(request):
-    test = Stats.objects.filter(player__last_name__contains="Easton")
-    return HttpResponse(test)
+    athletes = Athlete.objects.filter(team="VarsityG")
+    player_list = []
+    for ath in athletes:
+        test = Stats.objects.get(s_type = "Practice")
+        player_list.append(test)
+    print(player_list)
+    return render(request,"stats/practice.html",{"data":player_list})
