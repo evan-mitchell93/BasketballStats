@@ -25,6 +25,16 @@ def add_game(request):
     return render(request,"stats/game_form.html",{"form":form})
 
 
+def get_player(request,player_id):
+    options = Stats.objects.filter(player__id__contains=int(player_id))
+    return render(request,"stats/single_athlete.html",{"options":options})
+    
+    
+
+
+
+
+##### TODO ######
 def practice_stats(request):
     athletes = Athlete.objects.filter(team="VarsityG")
     player_list = []

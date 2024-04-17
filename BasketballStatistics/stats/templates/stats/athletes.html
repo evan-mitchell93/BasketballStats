@@ -1,8 +1,7 @@
 {% extends "stats/index.html" %} {% block content %}
-<h2 class="main_content">Add Athlete</h2>
 <div>
   {% for athlete in athletes %}
-    <p>{{athlete}}</p>
+    <a href="{% url 'get_player' athlete.id %}">{{athlete}}</a>
   {% endfor %}
 </div>
 <form action="{% url 'add_athlete' %}" method="post">
