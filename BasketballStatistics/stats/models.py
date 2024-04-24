@@ -39,50 +39,12 @@ class AthleteForm(ModelForm):
         fields = ["first_name","last_name","team","position","jersey"]
 
 
-############################
-### Game Model and Form  ###
-############################
-        
-class Game(models.Model):
-    TEAMS = {
-        "ElemG" : "Girl's 5th and 6th",
-        "MidG" : "Girl's 7th and 8th",
-        "VarsityG" : "Girl's Varsity",
-        "ElemB" : "Boy's 5th and 6th",
-        "MidB" : "Boy's 7th and 8th",
-        "VarsityB" : "Boy's Varsity"
-    }
-
-    RESULTS = {
-        "W" : "Win",
-        "L" : "Loss"
-    }
-        
-    team = models.CharField(max_length=8,choices=TEAMS)
-    opponent = models.CharField(max_length=75)
-    team_score = models.IntegerField()
-    opp_score = models.IntegerField()
-    outcome = models.CharField(max_length=1,choices=RESULTS)
-    date = models.DateField()
-
-    def __str__(self):
-        return f"{self.team} vs {self.opponent} : {self.date}"
-
-class GameForm(ModelForm):
-    class Meta:
-        model = Game
-        fields = ["team","opponent","team_score","opp_score","outcome","date"]
-
-
-
 ##########################
 # STATS MODELS AND FORMS #
 ##########################
 
 class Stats(models.Model):
-    season = models.CharField(max_length=5)
     player = models.ForeignKey(Athlete,on_delete=models.CASCADE)
-    s_type = models.CharField(max_length=9)
     two_taken = models.IntegerField(default=0)
     two_made = models.IntegerField(default=0)
     three_taken = models.IntegerField(default=0)
@@ -96,4 +58,30 @@ class Stats(models.Model):
     def_rebounds = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.player.last_name}, {self.s_type}: {self.season}"
+        return f"{self.player.last_name}"
+    
+class FreeThrows(models.Model):
+    player = models.ForeignKey(Athlete,on_delete=models.CASCADE)
+    date = models.DateField()
+    attempts = models.IntegerField(default=0)
+    makes = models.IntegerField(default=0)
+
+    @property
+    def percentage(self):
+        return (self.makes / self.attempts) * 100
+
+    def __str__(self):
+        return f"{self.player.last_name} : FT Percentage - {self.percentage}% : Practice - {self.date}"
+
+class ShootingDrill(models.Model):
+    player = models.ForeignKey(Athlete,on_delete=models.CASCADE)
+    drill_name = models.CharField(max_length=20)
+    two_taken = models.IntegerField()
+    two_made = models.IntegerField()
+    three_taken = models.IntegerField()
+    three_made = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.player.last_name}: Drill: {self.drill_name}"
+
+
