@@ -97,4 +97,8 @@ class ShootingDrill(models.Model):
         return f"{self.player.last_name}: Drill: {self.drill_name} \n 2p% {self.two_percentage:.2f} \
         3p% {self.three_percentage:.2f}"
 
+#Will use for managing dates for drills    
+class Practice(models.Model):
+    date = models.DateField()
+
 

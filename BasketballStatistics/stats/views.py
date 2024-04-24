@@ -16,20 +16,21 @@ def athlete_page(request):
     athletes = Athlete.objects.all()
     return render(request, "stats/athletes.html",{"form" :form,"athletes" :athletes})
 
-#render a form for adding a new game/update game result to application database.
-def add_game(request):
-    form = GameForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return HttpResponse("Thank you for adding a game")
-    return render(request,"stats/game_form.html",{"form":form})
 
-
-def practice_stats(request):
+def practices(request):
     athletes = Athlete.objects.filter(team="VarsityG")
     player_list = []
     for ath in athletes:
-        test = Stats.objects.get(s_type = "Practice")
+        test = Stats.objects.all()
         player_list.append(test)
     print(player_list)
     return render(request,"stats/practice.html",{"data":player_list})
+
+def new_practice(request):
+    return HttpResponse("TODO")
+
+def free_throws(request):
+    return HttpResponse("TODO")
+
+def shooting_drills(request):
+    return HttpResponse("TODO")
