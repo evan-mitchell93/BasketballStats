@@ -71,7 +71,7 @@ class FreeThrows(models.Model):
         return (self.makes / self.attempts) * 100
 
     def __str__(self):
-        return f"{self.player.last_name} : FT Percentage - {self.percentage}% : Practice - {self.date}"
+        return f"{self.player.last_name} : FT Percentage - {self.percentage:.2f}% : Practice - {self.date}"
 
 class ShootingDrill(models.Model):
     player = models.ForeignKey(Athlete,on_delete=models.CASCADE)
