@@ -81,7 +81,20 @@ class ShootingDrill(models.Model):
     three_taken = models.IntegerField()
     three_made = models.IntegerField()
 
+    @property
+    def two_percentage(self):
+        if self.two_taken != 0:
+            return (self.two_made / self.two_taken) * 100
+        else:
+            return 0
+    @property
+    def three_percentage(self):
+        if self.three_taken !=0:
+            return (self.three_made / self.three_taken) * 100
+        else:
+            return 0
     def __str__(self):
-        return f"{self.player.last_name}: Drill: {self.drill_name}"
+        return f"{self.player.last_name}: Drill: {self.drill_name} \n 2p% {self.two_percentage:.2f} \
+        3p% {self.three_percentage:.2f}"
 
 
