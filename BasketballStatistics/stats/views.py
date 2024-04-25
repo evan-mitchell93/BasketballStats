@@ -35,6 +35,8 @@ def free_throws(request):
 
     athletes = Athlete.objects.all()
     ft_list = []
+
+    #check if freethrows have been created for the practice already or not.
     try:
         records = FreeThrows.objects.filter(date=datetime.datetime.today())
         for record in records:
