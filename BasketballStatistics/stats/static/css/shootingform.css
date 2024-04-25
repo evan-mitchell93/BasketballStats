@@ -21,3 +21,7 @@ button {
 .btn_miss {
   background-color: red;
 }
+
+.submit {
+  background-color: goldenrod;
+}

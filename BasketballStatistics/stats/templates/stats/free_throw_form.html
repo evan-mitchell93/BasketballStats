@@ -1,42 +1,38 @@
 {% extends "stats/index.html" %} {% block content %}
 <div>
-  <form>
-    {%for stat in ft %}
+  <form id="free_throw_form" action="{% url 'free_throw_save' %}" method="post">
+    {% csrf_token %} {%for stat in ft %}
     <div class="player_box">
       <p>{{stat.player}}</p>
       <input
         type="number"
-        name="{{stat.player.first_name}}makes"
-        id="{{stat.player.first_name}}makes"
+        name="{{stat.player}}makes"
+        id="{{stat.player}}makes"
         value="{{stat.makes}}"
       />
-      <label
-        for="{{stat.player.first_name}}makes"
-        id="{{stat.player.first_name}}makeslbl"
+      <label for="{{stat.player}}makes" id="{{stat.player}}makeslbl"
         >{{stat.makes}}</label
       >
       <input
         type="number"
-        name="{{stat.player.first_name}}attempts"
-        id="{{stat.player.first_name}}attempts"
+        name="{{stat.player}}attempts"
+        id="{{stat.player}}attempts"
         value="{{stat.attempts}}"
       />
-      <label
-        for="{{stat.player.first_name}}attempts"
-        id="{{stat.player.first_name}}attemptslbl"
+      <label for="{{stat.player}}attempts" id="{{stat.player}}attemptslbl"
         >{{stat.attempts}}</label
       >
       <div class="btn_box">
         <button
           type="button"
-          onClick="update_makes('{{stat.player.first_name}}makes','{{stat.player.first_name}}attempts')"
+          onClick="update_makes('{{stat.player}}makes','{{stat.player}}attempts')"
           class="btn_make"
         >
           Make
         </button>
         <button
           type="button"
-          onClick="update_misses('{{stat.player.first_name}}attempts')"
+          onClick="update_misses('{{stat.player}}attempts')"
           class="btn_miss"
         >
           Miss
@@ -45,7 +41,7 @@
     </div>
     <!--Add function to increase only the attempts not the makes-->
     {% endfor %}
-    <button type="submit">Save</button>
+    <button type="submit" class="submit">Save</button>
   </form>
 
   <script>

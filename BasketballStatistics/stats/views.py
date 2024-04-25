@@ -32,20 +32,30 @@ def new_practice(request):
     return HttpResponse("TODO")
 
 def free_throws(request):
-
     athletes = Athlete.objects.all()
     ft_list = []
+    if request.method == 'GET':
 
-    #check if freethrows have been created for the practice already or not.
-    try:
-        records = FreeThrows.objects.filter(date=datetime.datetime.today())
-        for record in records:
-            ft_list.append({"player":record.player,"attempts":record.attempts,"makes":record.makes})
-    except ObjectDoesNotExist:
+        #check if freethrows have been created for the practice already or not.
+        try:
+            records = FreeThrows.objects.filter(date=datetime.datetime.today())
+            for record in records:
+                ft_list.append({"player":record.player,"attempts":record.attempts,"makes":record.makes})
+        except ObjectDoesNotExist:
+            for ath in athletes:
+                ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
+                FreeThrows.save(ft)
+                ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+    elif request.method == 'POST':
+        ##Loop through athlete free throw objects
+        ##update the data from there with the new info for makes/attempts
         for ath in athletes:
-            ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
-            FreeThrows.save(ft)
+            ft = FreeThrows.objects.get(player=ath,date=datetime.datetime.today())
+            ft.makes = int(request.POST[ath.__str__()+'makes'])
+            ft.attempts = int(request.POST[ath.__str__()+'attempts'])
+            ft.save()
             ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+
 
     return render(request,"stats/free_throw_form.html",{"ft":ft_list})
     
