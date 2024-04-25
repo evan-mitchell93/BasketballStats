@@ -2,31 +2,47 @@
 <div>
   <form>
     {%for stat in ft %}
-    <p>{{stat.player.last_name}}</p>
-    <input
-      type="number"
-      name="{{stat.player.first_name}}makes"
-      id="{{stat.player.first_name}}makes"
-      value="{{stat.makes}}"
-    />
-    <input
-      type="number"
-      name="{{stat.player.first_name}}attempts"
-      id="{{stat.player.first_name}}attempts"
-      value="{{stat.attempts}}"
-    />
-    <button
-      type="button"
-      onClick="update_makes('{{stat.player.first_name}}makes','{{stat.player.first_name}}attempts')"
-    >
-      Make
-    </button>
-    <button
-      type="button"
-      onClick="update_misses('{{stat.player.first_name}}attempts')"
-    >
-      Miss
-    </button>
+    <div class="player_box">
+      <p>{{stat.player}}</p>
+      <input
+        type="number"
+        name="{{stat.player.first_name}}makes"
+        id="{{stat.player.first_name}}makes"
+        value="{{stat.makes}}"
+      />
+      <label
+        for="{{stat.player.first_name}}makes"
+        id="{{stat.player.first_name}}makeslbl"
+        >{{stat.makes}}</label
+      >
+      <input
+        type="number"
+        name="{{stat.player.first_name}}attempts"
+        id="{{stat.player.first_name}}attempts"
+        value="{{stat.attempts}}"
+      />
+      <label
+        for="{{stat.player.first_name}}attempts"
+        id="{{stat.player.first_name}}attemptslbl"
+        >{{stat.attempts}}</label
+      >
+      <div class="btn_box">
+        <button
+          type="button"
+          onClick="update_makes('{{stat.player.first_name}}makes','{{stat.player.first_name}}attempts')"
+          class="btn_make"
+        >
+          Make
+        </button>
+        <button
+          type="button"
+          onClick="update_misses('{{stat.player.first_name}}attempts')"
+          class="btn_miss"
+        >
+          Miss
+        </button>
+      </div>
+    </div>
     <!--Add function to increase only the attempts not the makes-->
     {% endfor %}
     <button type="submit">Save</button>
@@ -37,15 +53,21 @@
       //update the makes by 1
       make_elem = document.getElementById(id);
       make_elem.value = parseInt(make_elem.value) + 1;
+      make_lbl = document.getElementById(id + "lbl");
+      make_lbl.innerText = parseInt(make_elem.value);
 
       //update attempts by 1
       attempt_elem = document.getElementById(id2);
       attempt_elem.value = parseInt(attempt_elem.value) + 1;
+      attempt_lbl = document.getElementById(id2 + "lbl");
+      attempt_lbl.innerText = parseInt(attempt_elem.value);
     }
 
     function update_misses(id) {
       attempt_elem = document.getElementById(id);
       attempt_elem.value = parseInt(attempt_elem.value) + 1;
+      attempt_lbl = document.getElementById(id + "lbl");
+      attempt_lbl.innerText = attempt_elem.value;
     }
   </script>
 </div>
