@@ -1,0 +1,7 @@
+Hide the actual input boxes (maybe)
+Change button placement as well as the colors (green for make, red for miss)
+Make buttons circular?
+
+Attach the form to a view function that updates the db objects but returns them to the same page.
+
+USE CSS to make the form good for mobile first.
