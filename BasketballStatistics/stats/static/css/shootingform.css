@@ -13,6 +13,8 @@ button {
   color: white;
   border: none;
   border-radius: 50%;
+  width: 25px;
+  height: 25px;
 }
 .btn_make {
   background-color: green;
