@@ -1,5 +1,5 @@
 from django.shortcuts import HttpResponse, render
-
+from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 
 import datetime
@@ -32,14 +32,19 @@ def new_practice(request):
     return HttpResponse("TODO")
 
 def free_throws(request):
-    #TODO
-    #Create for all athletes then return to make form.
+
     athletes = Athlete.objects.all()
     ft_list = []
-    for ath in athletes:
-        ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
-        FreeThrows.save(ft)
-        ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+    try:
+        records = FreeThrows.objects.filter(date=datetime.datetime.today())
+        for record in records:
+            ft_list.append({"player":record.player,"attempts":record.attempts,"makes":record.makes})
+    except ObjectDoesNotExist:
+        for ath in athletes:
+            ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
+            FreeThrows.save(ft)
+            ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+
     return render(request,"stats/free_throw_form.html",{"ft":ft_list})
     
 

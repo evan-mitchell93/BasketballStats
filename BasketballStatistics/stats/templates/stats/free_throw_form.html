@@ -1,26 +1,52 @@
 {% extends "stats/index.html" %} {% block content %}
-    <div>
-        <form>
-        {%for stat in ft %}
-            <p>{{stat.player.last_name}}</p>
-            <input type="number" name="{{stat.player.first_name}}makes" id="{{stat.player.first_name}}makes" value="{{stat.makes}}">
-            <input type="number" name="{{stat.player.first_name}}attempts" id="{{stat.player.first_name}}attempts" value="{{stat.attempts}}">
-            <button type="button" onClick="update_makes('{{stat.player.first_name}}makes','{{stat.player.first_name}}attempts')">Make</button>
-            <button type="button">Miss</button> <!--Add function to increase only the attempts not the makes-->
-        {% endfor %}
-        <button type="submit">Save</button>
-        </form>
+<div>
+  <form>
+    {%for stat in ft %}
+    <p>{{stat.player.last_name}}</p>
+    <input
+      type="number"
+      name="{{stat.player.first_name}}makes"
+      id="{{stat.player.first_name}}makes"
+      value="{{stat.makes}}"
+    />
+    <input
+      type="number"
+      name="{{stat.player.first_name}}attempts"
+      id="{{stat.player.first_name}}attempts"
+      value="{{stat.attempts}}"
+    />
+    <button
+      type="button"
+      onClick="update_makes('{{stat.player.first_name}}makes','{{stat.player.first_name}}attempts')"
+    >
+      Make
+    </button>
+    <button
+      type="button"
+      onClick="update_misses('{{stat.player.first_name}}attempts')"
+    >
+      Miss
+    </button>
+    <!--Add function to increase only the attempts not the makes-->
+    {% endfor %}
+    <button type="submit">Save</button>
+  </form>
 
-        <script>
-            function update_makes(id,id2){
-                //update the makes by 1
-                make_elem = document.getElementById(id)
-                make_elem.value = parseInt(make_elem.value) + 1
+  <script>
+    function update_makes(id, id2) {
+      //update the makes by 1
+      make_elem = document.getElementById(id);
+      make_elem.value = parseInt(make_elem.value) + 1;
 
-                //update attempts by 1
-                attempt_elem = document.getElementById(id2)
-                attempt_elem.value = parseInt(attempt_elem.value) + 1
-            }
-        </script>
-    </div>
+      //update attempts by 1
+      attempt_elem = document.getElementById(id2);
+      attempt_elem.value = parseInt(attempt_elem.value) + 1;
+    }
+
+    function update_misses(id) {
+      attempt_elem = document.getElementById(id);
+      attempt_elem.value = parseInt(attempt_elem.value) + 1;
+    }
+  </script>
+</div>
 {% endblock %}
