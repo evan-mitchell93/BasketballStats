@@ -2,6 +2,8 @@ from django.shortcuts import HttpResponse, render
 
 from .models import *
 
+import datetime
+
 # Create your views here.
 def index(request):
     return render(request,"stats/index.html")
@@ -30,7 +32,16 @@ def new_practice(request):
     return HttpResponse("TODO")
 
 def free_throws(request):
-    return HttpResponse("TODO")
+    #TODO
+    #Create for all athletes then return to make form.
+    athletes = Athlete.objects.all()
+    ft_list = []
+    for ath in athletes:
+        ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
+        FreeThrows.save(ft)
+        ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+    return render(request,"stats/free_throw_form.html",{"ft":ft_list})
+    
 
 def shooting_drills(request):
     return HttpResponse("TODO")

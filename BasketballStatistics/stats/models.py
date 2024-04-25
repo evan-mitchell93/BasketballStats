@@ -68,7 +68,10 @@ class FreeThrows(models.Model):
 
     @property
     def percentage(self):
-        return (self.makes / self.attempts) * 100
+        if self.attempts != 0:
+            return (self.makes / self.attempts) * 100
+        else:
+            return 0
 
     def __str__(self):
         return f"{self.player.last_name} : FT Percentage - {self.percentage:.2f}% : Practice - {self.date}"
