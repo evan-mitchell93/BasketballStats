@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-input {
+.hide {
   display: none;
 }
 button {
