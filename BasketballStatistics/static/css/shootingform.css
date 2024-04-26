@@ -1,0 +1,29 @@
+.player_box {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  display: none;
+}
+button {
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+.btn_make {
+  background-color: green;
+}
+
+.btn_miss {
+  background-color: red;
+}
+
+.submit {
+  background-color: goldenrod;
+}
