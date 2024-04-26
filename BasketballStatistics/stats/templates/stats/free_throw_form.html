@@ -11,19 +11,21 @@
         id="{{stat.player}}makes"
         value="{{stat.makes}}"
       />
-      <label for="{{stat.player}}makes" id="{{stat.player}}makeslbl"
-        >{{stat.makes}}</label
-      >
-      <input
-        class="hidden"
-        type="number"
-        name="{{stat.player}}attempts"
-        id="{{stat.player}}attempts"
-        value="{{stat.attempts}}"
-      />
-      <label for="{{stat.player}}attempts" id="{{stat.player}}attemptslbl"
-        >{{stat.attempts}}</label
-      >
+      <div class="lbl_box">
+        <label for="{{stat.player}}makes" id="{{stat.player}}makeslbl"
+          >{{stat.makes}}</label
+        >
+        <input
+          class="hidden"
+          type="number"
+          name="{{stat.player}}attempts"
+          id="{{stat.player}}attempts"
+          value="{{stat.attempts}}"
+        />
+        <label for="{{stat.player}}attempts" id="{{stat.player}}attemptslbl"
+          >{{stat.attempts}}</label
+        >
+    </div>
       <div class="btn_box">
         <button
           type="button"
