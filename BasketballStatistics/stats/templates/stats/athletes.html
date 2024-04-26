@@ -1,10 +1,5 @@
 {% extends "stats/index.html" %} {% block content %}
-<div>
-  {% for athlete in athletes %}
-    <a href="{% url 'get_player' athlete.id %}">{{athlete}}</a>
-  {% endfor %}
-</div>
-<form action="{% url 'new_athlete' %}" method="post">
+<form action="{% url 'view_athlete' %}" method="post">
   {% csrf_token %} {% for field in form %}
   <div>
     {{field.label_tag}} <br />

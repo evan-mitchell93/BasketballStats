@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import permission_required
 from .models import *
 
 import datetime
@@ -9,6 +10,7 @@ def index(request):
     return render(request,"stats/index.html")
 
 #render a form for adding a new athlete to the application database.
+@permission_required("stats.view_athletes")
 def athlete_page(request):
     form = AthleteForm(request.POST)
     if form.is_valid():
