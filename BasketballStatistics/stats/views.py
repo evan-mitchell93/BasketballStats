@@ -1,6 +1,7 @@
 from django.shortcuts import HttpResponse, render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from .models import *
 
@@ -15,7 +16,9 @@ def register(request):
     if request.method == "POST":
         form = SevenOaksUser(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            group = Group.objects.get(name="Players")
+            user.groups.add(group)
             messages.success(request,"Your account was created")
             return redirect('index')
         else:
@@ -51,6 +54,7 @@ def free_throws(request):
     elif User.objects.filter(username=request.user.username,groups__name='Admin').exists():
         athletes = Athlete.objects.all()
         print("Not player")
+    
     ft_list = []
     if request.method == 'GET':
         try:
