@@ -1,6 +1,7 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import permission_required
+from django.contrib import messages
 from .models import *
 
 import datetime
@@ -8,6 +9,20 @@ import datetime
 # Create your views here.
 def index(request):
     return render(request,"stats/index.html")
+
+#Register new user
+def register(request):
+    if request.method == "POST":
+        form = SevenOaksUser(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Your account was created")
+            return redirect('index')
+        else:
+            messages.error(request, "Error creating account")
+    else:
+        form = SevenOaksUser()
+    return render(request, "registration/register.html", {'form' : form})
 
 #render a form for adding a new athlete to the application database.
 @permission_required("stats.view_athletes")
@@ -22,32 +37,40 @@ def athlete_page(request):
 
 
 def practices(request):
-    athletes = Athlete.objects.filter(team="VarsityG")
-    player_list = []
-    for ath in athletes:
-        test = Stats.objects.all()
-        player_list.append(test)
-    print(player_list)
-    return render(request,"stats/practice.html",{"data":player_list})
+    # Future updates
+    return render(request,"stats/practice.html")
 
 def new_practice(request):
     return HttpResponse("TODO")
 
 def free_throws(request):
-    athletes = Athlete.objects.all()
+    if User.objects.filter(username=request.user.username, groups__name='Players').exists():
+        u = User.objects.get(username=request.user.username)
+        athletes = Athlete.objects.filter(first_name=u.first_name, last_name=u.last_name)
+        print("Player")
+    elif User.objects.filter(username=request.user.username,groups__name='Admin').exists():
+        athletes = Athlete.objects.all()
+        print("Not player")
     ft_list = []
     if request.method == 'GET':
-
-        #check if freethrows have been created for the practice already or not.
         try:
             records = FreeThrows.objects.filter(date=datetime.datetime.today())
-            for record in records:
-                ft_list.append({"player":record.player,"attempts":record.attempts,"makes":record.makes})
         except ObjectDoesNotExist:
-            for ath in athletes:
-                ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
-                FreeThrows.save(ft)
-                ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+            records = []
+        finally:
+            if len(records) == 0:
+                #create record for each athlete
+                for ath in athletes:
+                    ft = FreeThrows(player=ath,date=datetime.datetime.today(),attempts=0,makes=0)
+                    FreeThrows.save(ft)
+                    ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
+            else:
+                #records have been created for the team already so get those 
+                for record in records:
+                    if record.player in athletes:
+                        ft_list.append({"player":record.player,"attempts":record.attempts,"makes":record.makes})
+
+
     elif request.method == 'POST':
         ##Loop through athlete free throw objects
         ##update the data from there with the new info for makes/attempts

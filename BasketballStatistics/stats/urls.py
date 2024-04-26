@@ -11,4 +11,5 @@ urlpatterns = [
     path("practices/shootingdrills",views.shooting_drills,name="shooting_drills"),
     path("practices",views.practices,name="practices"),
     path("practices/freethrows/save",views.free_throws,name="free_throw_save"),
+    path("register",views.register,name="register")
 ]

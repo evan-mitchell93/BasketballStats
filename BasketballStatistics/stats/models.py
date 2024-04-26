@@ -1,5 +1,23 @@
 from django.db import models
+from django import forms
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+############################
+# User Accounts Model/Form #
+############################
+
+class SevenOaksUser(UserCreationForm):
+    username = forms.CharField(max_length=30)
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username','first_name','last_name','password1','password2']
 
 ############################
 ## Athlete Model and Form ##
@@ -23,11 +41,12 @@ class Athlete(models.Model):
         "5" : "Center"
     }
 
-    first_name = models.CharField(max_length = 20)
+    first_name = models.CharField(max_length = 30)
     last_name = models.CharField(max_length = 30)
     team = models.CharField(max_length=8,choices=TEAMS)
     position = models.CharField(max_length=1,choices=POSITIONS)
     jersey = models.IntegerField()
+    username = models.CharField(max_length=30,null=True)
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
