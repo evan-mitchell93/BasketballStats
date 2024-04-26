@@ -11,10 +11,12 @@ input {
 }
 button {
   color: white;
+  text-align: center;
+  font-size: medium;
   border: none;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 20%;
+  height: 20%;
 }
 .btn_make {
   background-color: green;
