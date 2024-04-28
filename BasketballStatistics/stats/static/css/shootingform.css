@@ -36,6 +36,10 @@ button {
   background-color: red;
 }
 
+.btn_remove {
+  background-color: orange;
+}
+
 .submit {
   background-color: goldenrod;
 }
