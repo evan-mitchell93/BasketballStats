@@ -51,7 +51,7 @@ def free_throws(request):
         u = User.objects.get(username=request.user.username)
         athletes = Athlete.objects.filter(first_name=u.first_name, last_name=u.last_name)
         print("Player")
-    elif User.objects.filter(username=request.user.username,groups__name='Admin').exists():
+    else: #User.objects.filter(username=request.user.username,groups__name='Admin').exists():
         athletes = Athlete.objects.all()
         print("Not player")
     
@@ -62,6 +62,7 @@ def free_throws(request):
         except ObjectDoesNotExist:
             records = []
         finally:
+            print(len(records))
             if len(records) == 0:
                 #create record for each athlete
                 for ath in athletes:
