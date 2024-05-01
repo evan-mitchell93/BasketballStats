@@ -55,7 +55,7 @@ class Athlete(models.Model):
 class AthleteForm(ModelForm):
     class Meta:
         model = Athlete
-        
+        exclude = ('username',)
 
 
 ##########################
