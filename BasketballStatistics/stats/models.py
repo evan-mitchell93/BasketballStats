@@ -52,12 +52,6 @@ class Athlete(models.Model):
         return f"{self.last_name}, {self.first_name}"
     
 
-class AthleteForm(ModelForm):
-    class Meta:
-        model = Athlete
-        fields = ["first_name","last_name","team","position","jersey"]
-
-
 ##########################
 # STATS MODELS AND FORMS #
 ##########################
