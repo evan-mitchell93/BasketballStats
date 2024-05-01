@@ -4,6 +4,35 @@
   padding: 3px;
   display: flex;
   flex-direction: column;
+  text-align: left;
+  width:90%;
+  margin: auto;
+  text-align: center;
+}
+
+.lbl_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 33%;
+  text-align: center;
+  margin:auto;
+}
+
+.content_box {
+  display:flex;
+  flex-direction: row;
+}
+
+.btn_box {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  float:right;
+  width:33%;
+  margin: auto;
 }
 
 .hidden {
@@ -12,22 +41,12 @@
 button {
   color: white;
   text-align: center;
-  font-size: medium;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
 }
 
 .lbl_box label {
   width: 50px;
 }
 
-.lbl_box {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 .btn_make {
   background-color: green;
 }
@@ -36,17 +55,11 @@ button {
   background-color: red;
 }
 
-.btn_remove {
+.btn_undo {
   background-color: orange;
 }
 
-.submit {
-  background-color: goldenrod;
-}
 
-.inpt_name {
-  background-color: black;
-  color: white;
-  padding: 2px;
-  text-align: center;
-}
+
+
+

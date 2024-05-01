@@ -85,6 +85,7 @@ class FreeThrows(models.Model):
     date = models.DateField()
     attempts = models.IntegerField(default=0)
     makes = models.IntegerField(default=0)
+    last_opp = models.CharField(max_length=4, default="none")
 
     @property
     def percentage(self):

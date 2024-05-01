@@ -83,6 +83,7 @@ def free_throws(request):
             ft = FreeThrows.objects.get(player=ath,date=datetime.datetime.today())
             ft.makes = int(request.POST[ath.__str__()+'makes'])
             ft.attempts = int(request.POST[ath.__str__()+'attempts'])
+            ft.last_opp = request.POST[ath.__str__()+'opp']
             ft.save()
             ft_list.append({"player":ft.player,"attempts":ft.attempts,"makes":ft.makes})
 
