@@ -53,6 +53,7 @@ class Athlete(models.Model):
     
 
 class AthleteForm(ModelForm):
+    first_name = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'class':"inpt_name"}))
     class Meta:
         model = Athlete
         fields = ["first_name","last_name","team","position","jersey"]
