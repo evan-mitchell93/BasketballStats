@@ -30,7 +30,7 @@ class Athlete(models.Model):
         "VarsityG" : "Girl's Varsity",
         "ElemB" : "Boy's 5th and 6th",
         "MidB" : "Boy's 7th and 8th",
-        "VarsityB" : "Boy's Varsity",
+        "VarsityB" : "Boy's Varsity"
     }
     #Basic basketball Positions
     POSITIONS = {
@@ -38,7 +38,7 @@ class Athlete(models.Model):
         "2" : "Shooting Guard",
         "3" : "Small Forward",
         "4" : "Power Forward",
-        "5" : "Center",
+        "5" : "Center"
     }
 
     first_name = models.CharField(max_length = 30)
