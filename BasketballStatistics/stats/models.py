@@ -55,7 +55,7 @@ class Athlete(models.Model):
 class AthleteForm(ModelForm):
     class Meta:
         model = Athlete
-        fields = ["first_name","last_name","team","position","jersey"]
+        fields = ("first_name","last_name","team","position","jersey")
 
 
 ##########################
