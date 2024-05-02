@@ -21,6 +21,7 @@
         value="{{stat.last_opp}}"
       />
       <div class="lbl_box">
+        <p>MAKES:</p>
         <label for="{{stat.player}}makes" id="{{stat.player}}makeslbl"
           >{{stat.makes}}</label
         >
@@ -31,6 +32,9 @@
           id="{{stat.player}}attempts"
           value="{{stat.attempts}}"
         />
+        </div>
+        <div class="lbl_box">
+        <p>ATTEMPTS:</p>
         <label for="{{stat.player}}attempts" id="{{stat.player}}attemptslbl"
           >{{stat.attempts}}</label
         >
@@ -56,7 +60,7 @@
           onClick="undo('{{stat.player}}')"
           class="btn_undo"
           >
-          &#9100
+          UNDO
         </button>
       </div>
       </div>

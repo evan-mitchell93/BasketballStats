@@ -4,10 +4,10 @@
   padding: 3px;
   display: flex;
   flex-direction: column;
-  text-align: left;
   width:90%;
   margin: auto;
   text-align: center;
+  border-bottom: 1px solid black;
 }
 
 .lbl_box {
@@ -41,10 +41,15 @@
 button {
   color: white;
   text-align: center;
+  height: 45px;
+  font-size: medium;
 }
 
 .lbl_box label {
-  width: 50px;
+  width: auto;
+  height: 45px;
+  font-size: large;
+  align-content: center;
 }
 
 .btn_make {
