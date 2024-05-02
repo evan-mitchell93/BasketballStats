@@ -4,8 +4,10 @@
   padding: 3px;
   display: flex;
   flex-direction: column;
-  width:90%;
-  margin: auto;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
   text-align: center;
   border-bottom: 1px solid black;
 }
@@ -18,20 +20,26 @@
   padding-bottom: 10px;
   width: 33%;
   text-align: center;
-  margin:auto;
+  margin: auto;
+}
+.lbl_box label {
+  width: auto;
+  height: 45px;
+  font-size: large;
+  align-content: center;
 }
 
 .content_box {
-  display:flex;
+  display: flex;
   flex-direction: row;
 }
 
 .btn_box {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  float:right;
-  width:33%;
+  float: right;
+  width: 33%;
   margin: auto;
 }
 
@@ -45,31 +53,24 @@ button {
   font-size: medium;
 }
 
-.lbl_box label {
-  width: auto;
-  height: 45px;
-  font-size: large;
-  align-content: center;
-}
-
-.btn_make {
-  background-color: green;
-}
-
-.btn_miss {
-  background-color: red;
-}
-
-.btn_undo {
-  background-color: orange;
-}
-
 button[disabled] {
   background-color: grey;
   color: black;
 }
 
+.btn_make {
+  background-color: #33b249;
+}
 
+.btn_miss {
+  background-color: #ed0800;
+}
 
+.btn_undo {
+  background-color: #a881af;
+}
 
-
+.submit {
+  background-color: #55c2da;
+  width: 50%;
+}

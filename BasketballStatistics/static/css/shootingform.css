@@ -4,26 +4,71 @@
   padding: 3px;
   display: flex;
   flex-direction: column;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  border-bottom: 1px solid black;
 }
 
-input {
+.lbl_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 33%;
+  text-align: center;
+  margin: auto;
+}
+.lbl_box label {
+  width: auto;
+  height: 45px;
+  font-size: large;
+  align-content: center;
+}
+
+.content_box {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  float: right;
+  width: 33%;
+  margin: auto;
+}
+
+.hidden {
   display: none;
 }
 button {
   color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  text-align: center;
+  height: 45px;
+  font-size: medium;
 }
+
+button[disabled] {
+  background-color: grey;
+  color: black;
+}
+
 .btn_make {
-  background-color: green;
+  background-color: #33b249;
 }
 
 .btn_miss {
-  background-color: red;
+  background-color: #ed0800;
+}
+
+.btn_undo {
+  background-color: #a881af;
 }
 
 .submit {
-  background-color: goldenrod;
+  background-color: #55c2da;
+  width: 50%;
 }

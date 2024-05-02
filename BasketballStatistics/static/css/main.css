@@ -1,12 +1,12 @@
 html {
-  background: linear-gradient(0deg,navy 53%, rgb(128,0,0));
+  background-color: #dd7973;
   height: 100%;
   position: relative;
 }
 
 .main_content {
   margin: auto;
-  width: 80%;
+  width: 95%;
   border: 2px solid goldenrod;
   padding: 10px;
   text-align: center;
@@ -15,15 +15,27 @@ html {
 }
 
 .navigation {
-  color:white;
+  color: white;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   margin: auto;
   width: 80%;
   text-align: center;
 }
 
-.navigation a:visited {
+a:link {
+  text-decoration: none !important;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: goldenrod;
+}
+a:visited {
   color: white;
   text-decoration: none;
 }
