@@ -1,10 +1,27 @@
 {% extends "stats/index.html" %} {% block content %}
 <div>
+  <!--
+
+   Template to show the free throws attempted and made for the day
+   Will show either all players for admin/coaches
+   or single player for the athletes who use the app.
+
+   Form fields are hidden from users so they utilize the buttons
+   but can still submit the form to save all changes made.
+
+   Undo button will only allow you to undo 1 action until a make or miss is recorded again.
+
+   Must utilize the save button to keep data.
+
+  -->
+  
   <form id="free_throw_form" action="{% url 'free_throw_save' %}" method="post">
     {% csrf_token %} {%for stat in ft %}
     <div class="player_box">
+      <!-- Player name display -->
       <p>{{stat.player}}</p>
       <div class="content_box">
+      <!-- form fields hidden from user-->
       <input
         class="hidden"
         type="number"
@@ -13,6 +30,7 @@
         value="{{stat.makes}}"
       />
 
+      <!--Opp for last operation used for undoing last input-->
       <input
         class="hidden"
         type="text"
@@ -21,6 +39,7 @@
         value="{{stat.last_opp}}"
       />
       <div class="lbl_box">
+        <!--Displays number of makes to the user again the form input is hidden-->
         <p>MAKES:</p>
         <label for="{{stat.player}}makes" id="{{stat.player}}makeslbl"
           >{{stat.makes}}</label
@@ -34,12 +53,14 @@
         />
         </div>
         <div class="lbl_box">
+        <!--Displays the number of overall attempts to the user: form hidden-->
         <p>ATTEMPTS:</p>
         <label for="{{stat.player}}attempts" id="{{stat.player}}attemptslbl"
           >{{stat.attempts}}</label
         >
     </div>
       <div class="btn_box">
+        <!-- Button for made free throw -->
         <button
           type="button"
           onClick="update_makes('{{stat.player}}makes','{{stat.player}}attempts','1')"
@@ -47,6 +68,7 @@
         >
           &#10003
         </button>
+        <!--Button for missed free throw-->
         <button
           type="button"
           onClick="update_misses('{{stat.player}}attempts','1')"
@@ -54,6 +76,7 @@
         >
           &#10008
         </button>
+        <!--Button to Undo the last make or miss-->
         <button
           id="{{stat.player}}undo"
           type="button"
@@ -65,7 +88,6 @@
       </div>
       </div>
     </div>
-    <!--Add function to increase only the attempts not the makes-->
     {% endfor %}
     <button type="submit" class="submit">&#128190</button>
   </form>
@@ -73,6 +95,9 @@
   <script>
 
     function undo(player){
+      //If the last input was a make decrement both
+      //makes and attempts but if the last input was a miss
+      //decrement just the attempts
       opp_elem = document.getElementById(player+'opp')
       opp = opp_elem.value;
       if(opp == "make"){
@@ -106,11 +131,14 @@
     }
 
     function update_misses(id,val) {
+
+      //update attempts by one
       attempt_elem = document.getElementById(id);
       attempt_elem.value = parseInt(attempt_elem.value) + parseInt(val);
       attempt_lbl = document.getElementById(id + "lbl");
       attempt_lbl.innerText = attempt_elem.value;
 
+      //update last opperation done
       opp_elem = document.getElementById(id.slice(0,-8) + "opp");
       opp_elem.value = "miss"
       document.getElementById(id.slice(0,-8)+"undo").disabled = false;
