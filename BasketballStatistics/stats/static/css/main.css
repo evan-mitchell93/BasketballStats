@@ -15,7 +15,7 @@ html {
 }
 
 .navigation {
-  color: white;
+  background-color: rgba(255, 255, 255, 0.911);
   display: flex;
   flex-direction: row;
   margin-left: auto;
@@ -24,12 +24,12 @@ html {
   width: 100%;
   align-items: center;
   justify-content: center;
+  border: 2px solid goldenrod;
 }
 
 .link_box {
-  background-color: antiquewhite;
   height: 45px;
-  width: 32.5%;
+  width: 32%;
   align-content: center;
   text-align: center;
 }
