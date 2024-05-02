@@ -24,6 +24,8 @@ class SevenOaksUser(UserCreationForm):
 ############################
 class Athlete(models.Model):
     #Teams available at SOCS
+    #teams options broke python anywhere
+    #look in to this
 
 
     first_name = models.CharField(max_length = 30)

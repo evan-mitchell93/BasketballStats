@@ -64,6 +64,11 @@ button {
   background-color: orange;
 }
 
+button[disabled] {
+  background-color: grey;
+  color: black;
+}
+
 
 
 
